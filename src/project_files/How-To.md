@@ -266,3 +266,15 @@ CREATE DATABASE client_schedule;
 
 note that `LocalTime` by default displays HH:mm military time
 `LocalDate` dmy depending on region
+
+
+## How to merge old commit as a new head into main without deleting the history
+
+```
+git checkout 307a5cd        # check out the commit that you want to reset to  
+git checkout -b fixy        # create a branch named fixy to do the work  
+git merge -s ours master    # merge master's history without changing any files  
+git checkout master         # switch back to master  
+git merge fixy              # and merge in the fixed branch  
+git push                    # done, no need to force push!  
+```
